@@ -3,32 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://blog.m4dfry.space/posts/first-post/</loc>
+    <loc>https://m4dfry.github.io/posts/first-post/</loc>
     <lastmod>2018-07-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.m4dfry.space/categories/</loc>
+    <loc>https://m4dfry.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.m4dfry.space/about/</loc>
+    <loc>https://m4dfry.github.io/about/</loc>
   </url>
   
   <url>
-    <loc>http://blog.m4dfry.space/posts/</loc>
+    <loc>https://m4dfry.github.io/posts/</loc>
     <lastmod>2018-07-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.m4dfry.space/tags/</loc>
+    <loc>https://m4dfry.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.m4dfry.space/</loc>
+    <loc>https://m4dfry.github.io/</loc>
     <lastmod>2018-07-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
