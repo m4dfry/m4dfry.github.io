@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>m4dfry</title>
+    <link>http://blog.m4dfry.space/</link>
+    <description>Recent content on m4dfry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 01 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.m4dfry.space/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First Post</title>
+      <link>http://blog.m4dfry.space/posts/first-post/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.m4dfry.space/posts/first-post/</guid>
+      <description>This is the first post, it is more a test than a real content, most likely I will be deleted when the real contents arrive.
+In that case I salute you in advance
+bb</description>
+    </item>
+    
+    <item>
+      <title>Everything You Always Wanted to Know About Me (But Were Afraid to Ask)</title>
+      <link>http://blog.m4dfry.space/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.m4dfry.space/about/</guid>
+      <description>Hi, I&amp;rsquo;m Alessandro Sartori an italian full stack developer.
+A fan of programming and electronics since my first studies.
+I&amp;rsquo;m always looking for new technologies and I&amp;rsquo;m fascinated by software automation and their use starting from home to industrial use.
+I&amp;rsquo;m a supporter of android, linux and anything that allows me to get my hands under the hood.
+I have a decent collection of Arduino, Raspberry and ARM microcontrollers that I&amp;rsquo;m very proud of, and recently I&amp;rsquo;m also playing with 3D printing.</description>
+    </item>
+    
+  </channel>
+</rss>

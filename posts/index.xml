@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on m4dfry</title>
+    <link>http://blog.m4dfry.space/posts/</link>
+    <description>Recent content in Posts on m4dfry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 01 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.m4dfry.space/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First Post</title>
+      <link>http://blog.m4dfry.space/posts/first-post/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.m4dfry.space/posts/first-post/</guid>
+      <description>This is the first post, it is more a test than a real content, most likely I will be deleted when the real contents arrive.
+In that case I salute you in advance
+bb</description>
+    </item>
+    
+  </channel>
+</rss>
