@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on m4dfry</title>
-    <link>https://m4dfry.github.io/tags/</link>
+    <link>https://blog.m4dfry.space/tags/</link>
     <description>Recent content in Tags on m4dfry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="https://m4dfry.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.m4dfry.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
