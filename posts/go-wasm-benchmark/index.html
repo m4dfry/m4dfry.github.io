@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Alessandro Sartori">
+    <meta name="description" content="Alessandro Sartori&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <base href="https://blog.m4dfry.space">
+    <title>
+  Go WASM Benchmark · m4dfry
+</title>
+
+    <link rel="canonical" href="https://blog.m4dfry.space/posts/go-wasm-benchmark/">
+
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://blog.m4dfry.space/css/style.min.css">
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://blog.m4dfry.space/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://blog.m4dfry.space/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.43-DEV" />
+  </head>
+
+  <body class="">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://blog.m4dfry.space">
+      m4dfry
+    </a>
+    
+    <ul class="navigation-list  float-right ">
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://blog.m4dfry.space/posts/">Blog</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://blog.m4dfry.space/about/">About</a>
+      </li>
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Go WASM Benchmark</h1>
+      <h2 class="date">July 31, 2018</h2>
+
+      
+    </header>
+
+    
+
+<p>In the last days I have often read articles on the recent Web Assembly (Wasm) support landed in Go 1.11 (expected in August &hellip; soon).
+If it&rsquo;s the first time you hear about web assembly I invite you to read <a href="https://dev.to/akramsaouri_79/web-assembly-1egk">this</a>.</p>
+
+<p>What was the first thing I thought to see its power ??</p>
+
+<p>BENCHMARK obviously;  let&rsquo;s try the good old Fibonacci on WASM.</p>
+
+<p>I implemented the function in the most optimized way I found and with some help I arrived at the following result:</p>
+
+<p><strong>GO</strong></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#fff;font-weight:bold">func</span> fibonacci() <span style="color:#fff;font-weight:bold">func</span>() *big.Int {
+  a := big.NewInt(<span style="color:#ff0;font-weight:bold">0</span>)
+  b := big.NewInt(<span style="color:#ff0;font-weight:bold">1</span>)
+
+  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">func</span>() *big.Int {
+    <span style="color:#fff;font-weight:bold">defer</span> <span style="color:#fff;font-weight:bold">func</span>() {
+      a.Add(a, b)
+      a, b = b, a
+    }()
+  <span style="color:#fff;font-weight:bold">return</span> a
+  }
+}</code></pre></div>
+<p><strong>Javascript</strong></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#fff;font-weight:bold">function</span> fibonacci(num){
+  <span style="color:#fff;font-weight:bold">var</span> a = bigInt.one, b = bigInt.zero, temp;
+
+  <span style="color:#fff;font-weight:bold">while</span> (num &gt;= <span style="color:#ff0;font-weight:bold">0</span>){
+    temp = a;
+    a = a.plus(b);
+    b = temp;
+    num--;
+  }
+
+  <span style="color:#fff;font-weight:bold">return</span> b.toString();
+}
+</code></pre></div>
+<p>Once working I introduced a method to launch both functions together with a bit of debugging, and a method to calculate the average time of a battery of ten consecutive executions.</p>
+
+<p>And the first results suddently appears ..</p>
+
+<h5 id="firefox-61-0-1-64bit-for-ubuntu">Firefox 61.0.1(64bit) for Ubuntu</h5>
+
+<table>
+<thead>
+<tr>
+<th>f(x)</th>
+<th align="center">Javascript (ms)</th>
+<th align="center">WASM (ms)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>f(10)</td>
+<td align="center">0.6</td>
+<td align="center">7.5</td>
+</tr>
+
+<tr>
+<td>f(1000)</td>
+<td align="center">2.2</td>
+<td align="center">8.4</td>
+</tr>
+
+<tr>
+<td>f(5000)</td>
+<td align="center">14.5</td>
+<td align="center">9.9</td>
+</tr>
+
+<tr>
+<td>f(10000)</td>
+<td align="center">45</td>
+<td align="center">15.7</td>
+</tr>
+
+<tr>
+<td>f(50000)</td>
+<td align="center">508.8</td>
+<td align="center">108.1</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="chrome-version-68-0-3440-75-official-build-64-bit-for-ubuntu">Chrome Version 68.0.3440.75 (Official Build) (64-bit) for Ubuntu</h5>
+
+<table>
+<thead>
+<tr>
+<th>f(x)</th>
+<th align="center">Javascript (ms)</th>
+<th align="center">WASM (ms)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>f(10)</td>
+<td align="center">0.14</td>
+<td align="center">8.9</td>
+</tr>
+
+<tr>
+<td>f(1000)</td>
+<td align="center">1.20</td>
+<td align="center">9.7</td>
+</tr>
+
+<tr>
+<td>f(5000)</td>
+<td align="center">8.05</td>
+<td align="center">13.61</td>
+</tr>
+
+<tr>
+<td>f(10000)</td>
+<td align="center">19.31</td>
+<td align="center">17.21</td>
+</tr>
+
+<tr>
+<td>f(50000)</td>
+<td align="center">342.15</td>
+<td align="center">115.51</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here the same data on a plot
+<img src="https://blog.m4dfry.space/img/fib-bench-plot3.png" alt="Benchmark Plot Image" title="Benchmark Plot" /></p>
+
+<p>From the plot you can notice that for simple calculations the loading of the WASM library is not yet optimized and slows down the execution.
+The difference is no longer noted on the calculation of Fibonacci (5000) in which Wasm claims its calculation speed compared to Javascript.</p>
+
+<p>In order to make it easier to read from the graph, I have omitted the Fibonacci calculation (50000) from which we can deduce total supremacy of Wasm on both browsers when the calculations become much more serious.</p>
+
+<p>All the sources are avaiable on my <a href="https://github.com/m4dfry/go-wasm-simple-benchmark">github</a> along with an explanation of how to use them.</p>
+
+<p>Suggested articles:</p>
+
+<ul>
+<li><a href="https://blog.gopheracademy.com/advent-2017/go-wasm/">gopheracademy</a></li>
+<li><a href="https://brianketelsen.com/web-assembly-and-go-a-look-to-the-future/">web-assembly-and-go-a-look-to-the-future</a></li>
+<li><a href="https://blog.owulveryck.info/2018/06/08/some-notes-about-the-upcoming-webassembly-support-in-go.html">some-notes-about-the-upcoming-webassembly-support-in-go</a></li>
+<li><a href="https://medium.zenika.com/go-1-11-webassembly-for-the-gophers-ae4bb8b1ee03">web-assembly-for-gophers</a></li>
+<li><a href="https://www.lemoda.net/go/override-mime-type/index.html">override-mime-type</a></li>
+</ul>
+
+  </article>
+
+  <br/>
+
+  
+  
+</section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+     © 2018    ·  Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>. 
+  </section>
+</footer>
+
+    </main>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-121701064-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

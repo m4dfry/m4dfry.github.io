@@ -6,10 +6,22 @@
     <description>Recent content on m4dfry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 01 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.m4dfry.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go WASM Benchmark</title>
+      <link>https://blog.m4dfry.space/posts/go-wasm-benchmark/</link>
+      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.m4dfry.space/posts/go-wasm-benchmark/</guid>
+      <description>In the last days I have often read articles on the recent Web Assembly (Wasm) support landed in Go 1.11 (expected in August &amp;hellip; soon). If it&amp;rsquo;s the first time you hear about web assembly I invite you to read this.
+What was the first thing I thought to see its power ??
+BENCHMARK obviously; let&amp;rsquo;s try the good old Fibonacci on WASM.
+I implemented the function in the most optimized way I found and with some help I arrived at the following result:</description>
+    </item>
     
     <item>
       <title>First Post</title>
